@@ -19,7 +19,7 @@
 # Configuração
 
 ## Requerimentos mínimos
-- Python V3.6 ou >
+- Python V3.6 ou superior
 - MySQL Database
 
 ## Iniciar projeto
