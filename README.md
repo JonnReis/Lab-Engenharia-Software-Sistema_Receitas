@@ -1,4 +1,4 @@
-# Recipp 
+# Sistema Receitas 
 
 ## Aluno
 - Jonatas dos Reis Ferreira
@@ -26,7 +26,7 @@
 - Clonar e atualizar repositório
 ```
 git clone https://github.com/fabsvas/recipp-app.git
-cd recipp-app
+cd Prototipo_receitas
 git checkout master
 git pull
 ```
@@ -37,12 +37,12 @@ git pull
 
 - Instalação das dependências
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 - Configurando ambiente
 
-Configure a conexão com o MySQL no arquivo **.env** localizado na raiz do projeto de acordo com o exemplo a seguir
+Configure a conexão com o MySQL criando o arquivo **.env** na raiz do projeto de acordo com o exemplo a seguir
 ```
 MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
