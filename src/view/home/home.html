@@ -17,9 +17,6 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active" href="/recipes">Receitas</a>
             </li>
             <li class="nav-item">
@@ -38,15 +35,17 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card-wrapper">
+                <div class="recipe-wrapper">
                     {% if data.recipes %}
                     {% for recipe in data.recipes %}
-                    <div class="card">
-                        <div class="card-title">
+                    <div class="recipe">
+                        <div class="recipe-title">
+                            <br>
                             <h4>{{ recipe.name }}</h4>
                         </div>
-                        <div class="card-content">
+                        <div class="recipe-content">
                             <div class="ingredients">
+                                <hr>
                                 <h5>Ingredientes</h5>
                                 {% if recipe.ingredients %}
                                 {% for key, value in recipe.ingredients.items() %}
@@ -56,8 +55,11 @@
                             </div>
 
                             <div class="preparation">
+                                <hr>
                                 <h5>Modo de preparo</h5>
                                 <p>{{ recipe.steps }}</p>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>

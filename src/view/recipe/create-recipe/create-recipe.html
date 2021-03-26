@@ -18,8 +18,9 @@
     <main class="container">
         <div class="row">
             <div class="col-12" style="display: flex; align-items: center;">
+                <button type="button" class="button submit-button">
                 <a type="button" style="margin-right: 1rem;" href="{{ url_for('recipe.index') }}">Voltar</a>
-                <h1>Cadastrar receita</h1>
+                </button>
             </div>
         </div>
         <form method="POST">
@@ -30,8 +31,13 @@
                 </div>
 
                 <div class="col-12" style="margin-bottom: 1rem;">
-                    <label>Ingredientes</label>
-                    {% if data.stored_ingredients %}
+                    <h3>Ingredientes</h3>
+                    <div class="col-12" style="margin-bottom: 1rem;">
+                        <hr>
+                        <textarea class="form-control" rows="8" type="text" id="steps" name="ingredientes"
+                            placeholder="Exemplo: Farinha de trigo - 3 xícaras (chá), Ovo - 2, Fermento - 2 colheres"></textarea>
+                    </div>
+                    <!-- {% if data.stored_ingredients %}
                     {% for ingredient in data.stored_ingredients %}
                     <div class="ingredient-item"
                         style="display: flex; align-items: center; justify-content: space-between;">
@@ -47,11 +53,11 @@
                             <input class="form-control" type="text" id="{{ ingredient.id }}_quantity"
                                 name="quantidade_ingrediente">
                         </div>
-                    </div>
+                    </div> 
                     {% endfor %}
-                    {% endif %}
+                    {% endif %} -->
                     <div class="col-12" style="margin-bottom: 1rem;">
-                        <label>Modo de Preparo</label>
+                        <h3>Modo de preparo</h3>
                         <hr>
                         <textarea class="form-control" rows="8" type="text" id="steps" name="etapas"
                             placeholder="Exemplo: 1 - Bater no liquidificador"></textarea>

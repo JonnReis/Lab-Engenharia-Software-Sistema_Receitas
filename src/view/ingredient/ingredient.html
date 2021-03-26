@@ -17,9 +17,6 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active" href="/recipes">Receitas</a>
             </li>
             <li class="nav-item">
@@ -29,15 +26,22 @@
     </div>
 
     <main class="container">
+        </div>
         <div class="row">
             <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
                 <h1>Ingredientes cadastrados</h1>
-                <a href="{{ url_for('ingredient.create_ingredients') }}">Adicionar ingredientes</a>
+                <button type="button" class="button submit-button">
+                    <a href="{{ url_for('ingredient.update_ingredients') }}">Remover</a>
+                    </button>
+                <button type="button" class="button submit-button">
+                    <a href="{{ url_for('ingredient.create_ingredients') }}">Adicionar ingredientes</a>
+                </button>
             </div>
+        </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table">
+                <!-- <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -47,20 +51,19 @@
                     </thead>
 
                     <tbody>
-                        {% if data.ingredients %}
-                        {% for ingredient in data.ingredients %}
-                        <tr>
-                            <td>{{ ingredient.id }}</td>
-                            <td>{{ ingredient.name }}</td>
-                            <td>
-                                <a>Remover</a> |
-                                <a href="{{ url_for('ingredient.update_ingredients') }}">Editar</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                        {% endif %}
                     </tbody>
-                </table>
+                </table> -->
+                {% if data.ingredients %}
+                {% for ingredient in data.ingredients %}
+                    <label>{{ ingredient.id }} - {{ ingredient.name }}<hr></label>
+                {% endfor %}
+                {% endif %}
+                <!-- <button type="button" class="button submit-button">
+                <a>Remover</a>
+                </button> |
+                <button type="button" class="button submit-button">
+                <a href="{{ url_for('ingredient.update_ingredients') }}">Editar</a>
+                </button> -->
             </div>
         </div>
     </main>

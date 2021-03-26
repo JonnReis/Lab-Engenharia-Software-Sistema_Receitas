@@ -17,9 +17,6 @@
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link active" href="/recipes">Receitas</a>
             </li>
             <li class="nav-item">
@@ -32,7 +29,9 @@
         <div class="row">
             <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
                 <h1>Receitas Cadastradas</h1>
+                <button type="button" class="button submit-button">
                 <a href="{{ url_for('recipe.create_recipe') }}">Cadastrar receita</a>
+                </button>
             </div>
         </div>
         <div class="row">
@@ -43,10 +42,15 @@
                     <div class="card">
                         <div class="card-title"
                             style="display: flex; justify-content: space-between; align-items: center;">
+                            <br>
                             <h4>{{ recipe.name }}</h4>
                             <div>
-                                <a>Remover</a> |
+                                <button type="button" class="button submit-button">
+                                <a>Remover</a>
+                                </button> |
+                                <button type="button" class="button submit-button">
                                 <a href="/recipes/edit/{{ recipe.id }}">Editar</a>
+                                </button>
                             </div>
                         </div>
                         <div class="card-content">
@@ -62,6 +66,8 @@
                             <div class="preparation">
                                 <h5>Modo de preparo</h5>
                                 <p>{{ recipe.steps }}</p>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>

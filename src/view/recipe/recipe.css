@@ -81,7 +81,7 @@ li {
     margin-left: auto;
 }
 
-.card-wrapper {
+/* .card-wrapper {
     display: flex;
     flex-direction: column;
 }
@@ -100,7 +100,7 @@ li {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     /*margin-right: 15px;*/
-    /*margin-left: 15px;*/
+    /*margin-left: 15px;
 }
 
 .card-title {
@@ -126,4 +126,4 @@ li {
         margin-right: 15px;
         margin-left: 15px;
     }
-}
+} */

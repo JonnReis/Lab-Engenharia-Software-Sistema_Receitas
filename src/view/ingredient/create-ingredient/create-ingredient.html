@@ -16,35 +16,17 @@
 <main class="container">
     <div class="row">
         <div class="col-12" style="display: flex; align-items: center;">
+            <button type="button" class="button submit-button">
             <a type="button" style="margin-right: 1rem;" href="{{ url_for('ingredient.index') }}">Voltar</a>
-            <h1>Adicionar ingredientes</h1>
+            </button>
         </div>
     </div>
     <form method="POST">
         <div class="row">
+            <h1>Adicionar ingrediente</h1>
             <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
-            </div>
-            <div class="col-12" style="display: flex; align-items: center;">
-                <input type="text" class="form-control" placeholder="Nome do ingrediente" id="ingredient_id" style="margin: 10px;">
+                <textarea type="text" class="form-control" rows="8" placeholder="Nome do ingrediente" 
+                id="ingredient_id" style="margin: 10px;"></textarea>
             </div>
             <button type="button" class="button submit-button">Adicionar</button>
         </div>

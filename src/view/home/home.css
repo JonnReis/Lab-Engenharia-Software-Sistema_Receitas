@@ -80,11 +80,11 @@ li {
     margin-right: auto;
     margin-left: auto;
 }
-
+/* 
 .card-wrapper {
     display: flex;
     flex-direction: column;
-}
+} 
 
 .card-wrapper .card {
     min-width: 220px;
@@ -100,7 +100,7 @@ li {
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     /*margin-right: 15px;*/
-    /*margin-left: 15px;*/
+    /*margin-left: 15px;
 }
 
 .card-title {
@@ -112,13 +112,13 @@ li {
 
 .card-content {
     padding: 1.25rem;
-}
+}*/
 
 h4 {
     margin: 0 !important;
 }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
     .card-wrapper {
         flex-flow: row wrap;
     }
@@ -130,5 +130,5 @@ h4 {
         margin-right: 15px;
         margin-left: 15px;
     }
-}
+} */
 

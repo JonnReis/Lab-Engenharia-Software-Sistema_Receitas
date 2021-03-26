@@ -121,8 +121,8 @@ td, th {
 
 .submit-button {
     color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: #ffa228;
+    border-color: #ffa228;
 }
 
 @media (min-width: 576px) {
