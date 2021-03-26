@@ -55,14 +55,21 @@ MYSQL_PASSWORD=1234554321
 python wsgi.py create_db
 ```
 - Inicializando aplicação
+
+Gunicorn (Terminal Unix)
+```
+gunicorn --bind IP:PORTA wsgi:app
+
+gunicorn --bind 0.0.0.0:1234 wsgi:app
+```
+WSGI (Terminal Windows)
 ```
 wsgi.py
 ```
-ou
-``` 
-flask run
-```
-- Inicializando aplicação com o Guinicorn
+
+- Acessando aplicação
+Acesse http://127.0.0.1:5000/
+
 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
