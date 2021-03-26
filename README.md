@@ -30,9 +30,14 @@ cd Prototipo_receitas
 git checkout master
 git pull
 ```
+- Intalando o virtualenv
+``` 
+pip install virtualenv
+```
 - Inicializando ambiente virtual
 ```
  python -m venv env
+ env\Script\activate
 ```
 
 - Instalação das dependências
