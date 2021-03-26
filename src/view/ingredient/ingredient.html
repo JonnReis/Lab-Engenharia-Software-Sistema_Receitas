@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ingredient/ingredient.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+    {% include 'header/header.html' %}
+
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/recipes">Receitas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/ingredients">Ingredientes</a>
+            </li>
+        </ul>
+    </div>
+
+    <main class="container">
+        <div class="row">
+            <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
+                <h1>Ingredientes cadastrados</h1>
+                <a href="{{ url_for('ingredient.create_ingredients') }}">Adicionar ingredientes</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% if data.ingredients %}
+                        {% for ingredient in data.ingredients %}
+                        <tr>
+                            <td>{{ ingredient.id }}</td>
+                            <td>{{ ingredient.name }}</td>
+                            <td>
+                                <a>Remover</a> |
+                                <a href="{{ url_for('ingredient.update_ingredients') }}">Editar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer/footer.html' %}
+</body>
+
+</html>

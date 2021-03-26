@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receitas</title>
+
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recipe/recipe.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+    {% include 'header/header.html' %}
+
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/recipes">Receitas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/ingredients">Ingredientes</a>
+            </li>
+        </ul>
+    </div>
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
+                <h1>Receitas Cadastradas</h1>
+                <a href="{{ url_for('recipe.create_recipe') }}">Cadastrar receita</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card-wrapper">
+                    {% if data.recipes %}
+                    {% for recipe in data.recipes %}
+                    <div class="card">
+                        <div class="card-title"
+                            style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4>{{ recipe.name }}</h4>
+                            <div>
+                                <a>Remover</a> |
+                                <a href="/recipes/edit/{{ recipe.id }}">Editar</a>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="ingredients">
+                                <h5>Ingredientes</h5>
+                                {% if recipe.ingredients %}
+                                {% for key, value in recipe.ingredients.items() %}
+                                <p>{{ key }}: {{ value }}</p>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                            <div class="preparation">
+                                <h5>Modo de preparo</h5>
+                                <p>{{ recipe.steps }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer/footer.html' %}
+</body>
+
+</html>

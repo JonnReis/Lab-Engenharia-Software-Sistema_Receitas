@@ -1,0 +1,16 @@
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='utils/components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header/header.css') }}">
+{% endblock %}
+
+<header>
+    <nav class="fixed-top navbar">
+        <span class="brand">
+            <h4>Protótipo Receitas</h4>
+        </span>
+        <div id="divBusca">
+            <input type="text" id="txtBusca" placeholder="Buscar..."/>
+            <img src="search_symbol.jpg" id="btnBusca" alt="Buscar"/>
+          </div>
+    </nav>
+</header>
