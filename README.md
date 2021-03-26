@@ -18,7 +18,7 @@
 
 # Configuração
 
-## Requerimentos mínimos
+## Requisitos mínimos
 - Python V3.6 ou superior
 - MySQL Database
 
@@ -71,6 +71,7 @@ wsgi.py
 
 Acesse http://127.0.0.1:5000/
 
+### Vídeo explicativo [Entrega_1](https://youtu.be/N8nv_OZe5q0)
 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
