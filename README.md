@@ -12,7 +12,9 @@
 - SQLAlchemy
 - Jinja2
 - Gunicorn
-- HTML5, CSS e Javascript
+- HTML5
+- CSS
+- Javascript
 
 # Configuração
 
