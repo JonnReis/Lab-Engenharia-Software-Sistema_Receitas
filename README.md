@@ -1,7 +1,7 @@
-# Recipp 
+# Sistema Receitas 
 
 ## Aluno
-- Fabrício da Cunha Vasconcellos
+- Jonatas dos Reis Ferreira
 
 ## Objetivo
 - Desenvolver um sistema Web para criação de receitas em Python
@@ -12,7 +12,9 @@
 - SQLAlchemy
 - Jinja2
 - Gunicorn
-- HTML5, CSS e Javascript
+- HTML5
+- CSS
+- Javascript
 
 # Configuração
 
@@ -23,8 +25,8 @@
 ## Iniciar projeto
 - Clonar e atualizar repositório
 ```
-git clone https://github.com/fabsvas/recipp-app.git
-cd recipp-app
+git clone https://github.com/JonnReis/Lab-Engenharia-Software-Sistema_Receitas.git
+cd Prototipo_receitas
 git checkout master
 git pull
 ```
@@ -35,16 +37,16 @@ git pull
 
 - Instalação das dependências
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 - Configurando ambiente
 
-Configure a conexão com o MySQL no arquivo **.env** localizado na raiz do projeto de acordo com o exemplo a seguir
+Configure a conexão com o MySQL criando o arquivo **.env** na raiz do projeto de acordo com o exemplo a seguir
 ```
 MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
-MYSQL_PORT=3306
+MYSQL_PORT=3307
 MYSQL_USERNAME=root
 MYSQL_PASSWORD=1234554321
 ```
