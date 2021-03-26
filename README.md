@@ -25,7 +25,7 @@
 ## Iniciar projeto
 - Clonar e atualizar repositório
 ```
-git clone https://github.com/fabsvas/recipp-app.git
+git clone https://github.com/JonnReis/Lab-Engenharia-Software-Sistema_Receitas.git
 cd Prototipo_receitas
 git checkout master
 git pull
