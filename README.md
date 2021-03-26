@@ -50,6 +50,20 @@ MYSQL_PORT=3307
 MYSQL_USERNAME=root
 MYSQL_PASSWORD=1234554321
 ```
+- Criando Banco de dados (Collection)
+``` 
+python wsgi.py create_db
+```
+- Iniciaçiazndo aplicação
+```
+wsgi.py
+```
+ou
+``` 
+flask run
+```
+- Inicializando aplicação com o Guinicorn
+
 "# Lab-Engenharia-Software-Sistema_Receitas" 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
 "# Lab-Engenharia-Software-Sistema_Receitas" 
