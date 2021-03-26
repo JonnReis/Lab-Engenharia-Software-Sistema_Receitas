@@ -54,7 +54,7 @@ MYSQL_PASSWORD=1234554321
 ``` 
 python wsgi.py create_db
 ```
-- Iniciaçiazndo aplicação
+- Inicializando aplicação
 ```
 wsgi.py
 ```
