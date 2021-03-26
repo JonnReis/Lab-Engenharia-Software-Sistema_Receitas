@@ -48,7 +48,7 @@ MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
 MYSQL_PORT=3307
 MYSQL_USERNAME=root
-MYSQL_PASSWORD=1234554321
+MYSQL_PASSWORD=12345
 ```
 - Criando Banco de dados (Collection)
 ``` 
