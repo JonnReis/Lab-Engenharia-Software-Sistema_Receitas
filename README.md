@@ -37,7 +37,7 @@ pip install virtualenv
 - Inicializando ambiente virtual
 ```
  python -m venv env
- env\Script\activate
+ env\Scripts\activate
 ```
 
 - Instalação das dependências
