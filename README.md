@@ -51,7 +51,7 @@ Configure a conexão com o MySQL criando o arquivo **.env** na raiz do projeto d
 ```
 MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
-MYSQL_PORT=3307
+MYSQL_PORT=3306
 MYSQL_USERNAME=root
 MYSQL_PASSWORD=12345
 ```
