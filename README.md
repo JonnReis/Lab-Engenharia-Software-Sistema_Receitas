@@ -57,7 +57,7 @@ MYSQL_PASSWORD=12345
 ```
  **Obs: Se necessário, altere a senha do campo "MYSQL_PASSWORD" de acordo com o seu usuário root**
 
-- Criando Banco de dados (Collection)
+- Criando Banco de dados (Collection) e iniciando aplicação
 ``` 
 python wsgi.py create_db
 ```
