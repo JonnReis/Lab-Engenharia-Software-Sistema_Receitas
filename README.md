@@ -55,15 +55,13 @@ MYSQL_PORT=3307
 MYSQL_USERNAME=root
 MYSQL_PASSWORD=12345
 ```
-**Obs: Se necessário, altere a senha do campo "MYSQL_PASSWORD" de acordo com o seu usuário root**
-
-
+ **Obs: Se necessário, altere a senha do campo "MYSQL_PASSWORD" de acordo com o seu usuário root**
 
 - Criando Banco de dados (Collection)
 ``` 
 python wsgi.py create_db
 ```
-- Inicializando aplicação
+- Inicializando aplicação com o BD ja criado
 
 Gunicorn (Terminal Unix)
 ```
