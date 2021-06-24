@@ -34,11 +34,16 @@ git pull
 ``` 
 pip install virtualenv
 ```
-- Inicializando ambiente virtual
+- Inicializando ambiente virtual Windows
 ```
  python -m venv env
  env\Scripts\activate
 ```
+- Inicializando ambiente virtual Windows
+'''
+python3 -m venv env
+source env\bin\activate
+'''
 
 - Instalação das dependências
 ```
