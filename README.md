@@ -39,7 +39,7 @@ pip install virtualenv
  python -m venv env
  env\Scripts\activate
 ```
-- Inicializando ambiente virtual Windows
+- Inicializando ambiente virtual Linux
 ```
 python3 -m venv env
 source env\bin\activate
