@@ -118,5 +118,5 @@ python/python3 wsgi.py
 
 ## Entregas parciais
 
-- [Entrega 1 - Protótipo navegável](https://youtu.be/KG1fHToLZtw)
-- [Entrega 2 - Persistência de dados](https://youtu.be/4iKZfBt7s8k)
+- [Entrega 1 - Protótipo navegável]()
+- [Entrega 2 - Persistência de dados]()
