@@ -32,13 +32,22 @@ git pull
 
 #### Instalando virtualenv
 ```
+<<<<<<< HEAD
 pip/pip3 install virtualenv
+=======
+- Inicializando ambiente virtual Windows
+>>>>>>> 31fe94857abec825f0584d6f08638138ec4d5624
 ```
 
 #### Inicializando ambiente virtual no Linux
 ```
  python/python3 -m venv env
  source env/bin/activate
+```
+- Inicializando ambiente virtual Linux
+```
+python3 -m venv env
+source env\bin\activate
 ```
 
 #### Inicializando ambiente virtual no Windows
