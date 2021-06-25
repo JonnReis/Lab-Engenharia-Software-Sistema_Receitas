@@ -1,84 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receitas</title>
 
     {% block css %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recipe/recipe.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='recipe/recipe.css') }}">
     {% endblock %}
+
+    {% block js %}
+    <script src="{{ url_for('static', filename='recipe/recipe.js') }}"></script>
+    {% endblock %}}
 </head>
-
 <body>
-    {% include 'header/header.html' %}
 
-    <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="/recipes">Receitas</a>
+    <br> </br>
+
+     <div>
+        <ul>
+            <li>
+                <a href="/recipes">Receitas</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/ingredients">Ingredientes</a>
+            <li >
+                <a href="/ingredients">Ingredientes</a>
             </li>
-        </ul>
+            </ul>
+        </div>
+
+{% include 'header/header.html' %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
+            <h1>Receitas cadastradas</h1>
+            <button type="button" class="button recipe-button">
+            <a href="{{ url_for('recipe.create_recipe') }}">Nova receita</a>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-wrapper">
+                {% if recipes %}
+                    {% for recipe in recipes %}
+                        <div class="card" id="recipe_{{recipe.id}}">
+                            <div class="card-title">
+                                <br>
+                                <h4>{{ recipe.name }}</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="ingredients">
+                                    <hr>
+                                    <h5>Ingredientes</h5>
+                                    {% for ingredient in recipe.ingredients %}
+                                        <p>{{ingredient.name}}</p>
+                                    {% endfor %}
+                                </div>
 
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
-                <h1>Receitas Cadastradas</h1>
-                <button type="button" class="button submit-button">
-                <a href="{{ url_for('recipe.create_recipe') }}">Nova receita</a>
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card-wrapper">
-                    {% if data.recipes %}
-                    {% for recipe in data.recipes %}
-                    <div class="card">
-                        <div class="card-title"
-                            style="display: flex; justify-content: space-between; align-items: center;">
-                            <br>
-                            <h4>{{ recipe.name }}</h4>
-                            <div>
-                                <button type="button" class="button submit-button">
-                                <a>Remover</a>
-                                </button> |
-                                <button type="button" class="button submit-button">
-                                <a href="/recipes/edit/{{ recipe.id }}">Editar</a>
-                                </button>
+                                <div class="preparation">
+                                    <hr>
+                                    <h5>Modo de fazer</h5>
+                                    <p>{{ recipe.steps }}</p>
+                                    <br>
+                                    <br>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-content">
-                            <div class="ingredients">
-                                <h5>Ingredientes</h5>
-                                {% if recipe.ingredients %}
-                                {% for key, value in recipe.ingredients.items() %}
-                                <p>{{ key }}: {{ value }}</p>
-                                {% endfor %}
-                                {% endif %}
-                            </div>
-
-                            <div class="preparation">
-                                <h5>Modo de preparo</h5>
-                                <p>{{ recipe.steps }}</p>
-                                <br>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
                     {% endfor %}
-                    {% endif %}
-                </div>
+                {% endif %}
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    {% include 'footer/footer.html' %}
+{% include 'footer/footer.html' %}
 </body>
-
 </html>

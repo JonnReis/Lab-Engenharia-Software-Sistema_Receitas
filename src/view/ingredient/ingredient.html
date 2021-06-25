@@ -1,74 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
 
     {% block css %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ingredient/ingredient.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='ingredient/ingredient.css') }}">
     {% endblock %}
+
+    {% block js %}
+    <script src="{{ url_for('static', filename='ingredient/ingredient.js') }}"></script>
+    {% endblock %}}
 </head>
-
 <body>
-    {% include 'header/header.html' %}
 
-    <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="/recipes">Receitas</a>
+     <br></br>
+
+    <div>
+        <ul>
+            <li>
+                <a href="/recipes">Receitas</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/ingredients">Ingredientes</a>
+            <li >
+                <a href="/ingredients">Ingredientes</a>
             </li>
-        </ul>
+            </ul>
+        </div>
+
+{% include 'header/header.html' %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
+            <h1>Ingredientes Cadastrados</h1>
+            <button type="button" class="button recipe-button">
+            <a href="{{ url_for('ingredient.create_ingredients') }}">Adicionar</a>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <!--th>ID</th-->
+                    <th>Nome</th>
+                    <!--th>Criado em</th-->
+                    <th>Ações</th>
+                </tr>
+                </thead>
 
-    <main class="container">
-        </div>
-        <div class="row">
-            <div class="col-12" style="display: flex; align-items: center; justify-content: space-between;">
-                <h1>Ingredientes cadastrados</h1>
-                <button type="button" class="button submit-button">
-                    <a href="{{ url_for('ingredient.update_ingredients') }}">Remover</a>
-                    </button>
-                <button type="button" class="button submit-button">
-                    <a href="{{ url_for('ingredient.create_ingredients') }}">Adicionar</a>
-                </button>
-            </div>
-        </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                    </tbody>
-                </table> -->
+                <tbody>
                 {% if data.ingredients %}
-                {% for ingredient in data.ingredients %}
-                    <label>{{ ingredient.id }} - {{ ingredient.name }}<hr></label>
-                {% endfor %}
+                    {% for ingredient in data.ingredients %}
+                        <tr id="ingredient_{{ingredient.id}}">
+                            <!--td>{{ ingredient.id }}</td-->
+                            <td>{{ ingredient.name }}</td>
+                            <!--td>{{ ingredient.created_at }}</td-->
+                            <td>
+                                <button type="button" class="button btn-sm delete-button" onclick="deleteObj('{{ ingredient.id }}')">Remover</button>
+                                <button type="button" class="button btn-sm btn-primary" onclick="window.location.href = '/ingredients/edit/{{ ingredient.id }}'" >Editar</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% endif %}
-                <!-- <button type="button" class="button submit-button">
-                <a>Remover</a>
-                </button> |
-                <button type="button" class="button submit-button">
-                <a href="{{ url_for('ingredient.update_ingredients') }}">Editar</a>
-                </button> -->
-            </div>
+                </tbody>
+            </table>
         </div>
-    </main>
+    </div>
+</main>
 
-    {% include 'footer/footer.html' %}
+{% include 'footer/footer.html' %}
 </body>
-
 </html>

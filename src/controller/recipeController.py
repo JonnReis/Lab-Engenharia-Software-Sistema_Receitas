@@ -1,97 +1,104 @@
-from flask import Blueprint, render_template, request
+import json
+
+from flask import Blueprint, render_template, request, current_app, Response
+from flask_sqlalchemy import SQLAlchemy
+
+from src.model.models import Recipe as RecipeModel
+from src.model.models import Ingredient as IngredientModel
 
 from src.controller.ingredientController import get_ingredients
 
 recipe_controller = Blueprint('recipe', __name__, url_prefix='/recipes')
 
 
-@recipe_controller.route('/')
+@recipe_controller.route('/', methods=['GET'])
 def index():
-    recipes = get_recipes()
-    return render_template('recipe/recipe.html', title='Receitas', data={'recipes': recipes})
+    try:
+        recipes = get_recipes().json['recipes']
+
+    except Exception as error:
+        print(error)
+        recipes = []
+
+    return render_template('recipe/recipe.html', title='Receitas', recipes=recipes)
+
+
+def get_recipes():
+    try:
+        recipes = RecipeModel.query.all()
+        if not recipes:
+            raise Exception('Nenhuma receita')
+
+        recipes = list(map(lambda x: {'id': x.id, 'name': x.name, 'ingredients': list(
+            map(lambda ing: {'id': ing.id, 'name': ing.name}, x.ingredients)), 'steps': x.steps,
+                                      'created_at': str(x.created_at)},
+                           recipes))
+
+        res = json.dumps({'recipes': recipes})
+        return Response(res, mimetype='application/json', status=200)
+
+    except Exception as error:
+        res = json.dumps([])
+        print(error)
+        return Response(res, mimetype='application/json', status=500)
 
 
 @recipe_controller.route('/create', methods=['GET', 'POST'])
 def create_recipe():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        ingredients = request.form.get('ingredients')
+    if request.json:
+        try:
+            db = SQLAlchemy(current_app)
+            obj = request.json
 
-    stored_ingredients = get_ingredients()
-    return render_template('recipe/create-recipe/create-recipe.html', data={'stored_ingredients': stored_ingredients})
+            name = obj['name']
+            steps = obj['steps']
+            ingredient_ids = obj['ingredients']
 
+            ingredients = list(map(lambda x: IngredientModel.query.filter_by(id=x).first(), ingredient_ids))
 
-@recipe_controller.route('/edit/<id>')
-def get_recipe_by_id(id):
-    recipes = get_recipes()
-    recipe = find_recipe(recipes, id)
-    return render_template('recipe/edit-recipe/edit-recipe.html', data={'recipe': recipe})
+            recipe = RecipeModel(
+                name=name,
+                steps=steps,
+                ingredients=ingredients
+            )
 
+            with current_app.app_context():
+                db.session.merge(recipe)
+                db.session.commit()
 
-@recipe_controller.route('/getRecipes', methods=['GET'])
-def get_recipes():
-    return [
-        {
-            'id': 1,
-            'name': 'Torta de limão',
-            'ingredients': {
-                'Biscoito de maizena': '200g',
-                'Margarina': '150g',
-                'Leite condensado': '1 lata(395g)',
-                'Creme de leite':'1 caixa(200g)',
-                'Suco de limão':'4 limões',
-                'Raspas de limão':'2 limões',
-                'Claras de ovo':'3 ou 4',
-                'Açúcar':'3 colheres (sopa)'
-            },
-            'steps': '1 - Triturar biscoito, 2 - Juntar tudo e bater, 3 - Despejar na forma, 4 - Levar ao forno médio (180º C)',
-            'created-at': '22/03/2021'
-        },
-        {
-            'id': 2,
-            'name': 'Bolo de chocolate',
-            'ingredients': {
-                'Ovo': '4',
-                'Achocolatado em pó': '2 colheres (sopa)',
-                'Manteiga':'2 colheres (sopa)',
-                'Oléo': '1 xícara',
-                'Farinha de trigo':'3 xícaras (chá)',
-                'Açucar':'2 xícaras (chá)',
-                'Fermento':'2 colheres (sopa)',
-                'Leite':'1 xícara (chá)',
-                'Leite condensado': '1'
-            },
-            'steps': '1 - Bater no liquidificador, 2 - Despejar na forma, 3 - Assar em fogo médio',
-            'created-at': '22/03/2021'
-        },
-        {
-            'id':3,
-            'name':'teste1',
-            'ingredients':{
-                'teste1':'1',
-                'teste2':'2',
-                'teste3':'3'
-            },
-            'steps':'teste1, teste2, teste3',
-            'created-at':'25/03/2021'
-        },
-        {
-            'id':4,
-            'name':'teste2',
-            'ingredients':{
-                'teste1':'1',
-                'teste2':'2',
-                'teste3':'3'
-            },
-            'steps':'teste1, teste2, teste3',
-            'created-at':'25/03/2021'
-        }
-    ]
+            res = json.dumps({'message': 'Receita cadastrada!', 'error': False})
+            return Response(res, mimetype='application/json', status=200)
 
+        except Exception as error:
+            res = json.dumps({'message': str(error), 'error': True})
+            return Response(res, mimetype='application/json', status=200)
+    else:
+        try:
+            stored_ingredients = get_ingredients().json['ingredients']
+        except Exception as error:
+            print(error)
+            stored_ingredients = []
+        return render_template('recipe/create-recipe/create-recipe.html',
+                               data={'stored_ingredients': stored_ingredients})
 
-def find_recipe(recipe_list, recipe_id):
-    recipe_id = int(recipe_id)
-    for recipe in recipe_list:
-        if recipe['id'] == recipe_id:
-            return recipe
-   
+@recipe_controller.route('/delete/<_id>', methods=['DELETE'])
+def delete_recipe(_id):
+    try:
+        db = SQLAlchemy(current_app)
+
+        with current_app.app_context():
+            db.session.query(RecipeModel).filter_by(id=_id).delete()
+            db.session.commit()
+
+        res = json.dumps({'message': 'Receita excluída', 'error': False})
+        return Response(res, mimetype='application/json', status=200)
+
+    except Exception as error:
+        res = json.dumps({'message': str(error), 'error': True})
+        return Response(res, mimetype='application/json', status=500)
+
+@recipe_controller.route('/edit/<_id>')
+def get_recipe_by_id(_id):
+    recipe = RecipeModel.query.filter_by(id=_id).first()
+    return render_template('recipe/edit-recipe/edit-recipe.html', recipe=recipe)
+

@@ -1,93 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
 
     {% block css %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
-    {% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home/home.css') }}">
+    {%  endblock %}
 </head>
-
 <body>
+
+    <br></br>
+
+    <div>
+        <ul>
+                <li>
+                    <a href="/recipes">Receitas</a>
+                </li>
+                <li >
+                    <a href="/ingredients">Ingredientes</a>
+                </li>
+            </ul>
+        </div>
+
     {% include 'header/header.html' %}
 
-    <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="/recipes">Receitas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="/ingredients">Ingredientes</a>
-            </li>
-        </ul>
-    </div>
-
-    <main class="container-fluid">
+    <main class="container">
         <div class="row">
             <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
                 <h1>Recentes</h1>
-                <!-- <a href="{{ url_for('recipe.create_recipe') }}">Criar receita</a> -->
-                <!-- <a href="/recipes">Gerenciar receitas</a> -->
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="recipe-wrapper">
+                <div class="card-wrapper">
                     {% if data.recipes %}
-                    {% for recipe in data.recipes %}
-                    <div class="recipe">
-                        <div class="recipe-title">
-                            <br>
-                            <h4>{{ recipe.name }}</h4>
-                        </div>
-                        <div class="recipe-content">
-                            <div class="ingredients">
-                                <hr>
-                                <h5>Ingredientes</h5>
-                                {% if recipe.ingredients %}
-                                {% for key, value in recipe.ingredients.items() %}
-                                <p>{{ key }}: {{ value }}</p>
-                                {% endfor %}
-                                {% endif %}
-                            </div>
+                        {% for recipe in data.recipes %}
+                            <div class="card">
+                                <div class="card-title">
+                                    <br>
+                                    <h4>{{ recipe.name }}</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="ingredients">
+                                        <hr>
+                                        <h5>Ingredientes</h5>
+                                        {% for ingredient in recipe.ingredients %}
+                                        <p>{{ingredient.name}}</p>
+                                        {% endfor %}
+                                    </div>
 
-                            <div class="preparation">
-                                <hr>
-                                <h5>Modo de preparo</h5>
-                                <p>{{ recipe.steps }}</p>
-                                <br>
-                                <br>
+                                    <div class="preparation">
+                                        <hr>
+                                        <h5>Modo de fazer</h5>
+                                        <p>{{ recipe.steps }}</p>
+                                        <br>
+                                        <br>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    {% endfor %}
+                        {% endfor %}
                     {% endif %}
                 </div>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-12" style="display: flex; justify-content: space-between; align-items: center;">
-                <h1>Ingredientes</h1>
-                <a href="/ingredients">Gerenciar ingredientes</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                {% if data.ingredients %}
-                    {% for ingredient in data.ingredients %}
-                        <span class="label label-colorful">{{ ingredient.name }}</span>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div> -->
     </main>
-
-    <!-- {% include 'footer/footer.html' %} -->
 </body>
-
 </html>

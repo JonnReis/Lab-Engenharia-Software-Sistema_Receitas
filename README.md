@@ -1,7 +1,7 @@
-# Sistema Receitas 
+# Recipp 
 
 ## Aluno
-- Jonatas dos Reis Ferreira
+- Fabrício da Cunha Vasconcellos
 
 ## Objetivo
 - Desenvolver um sistema Web para criação de receitas em Python
@@ -12,74 +12,102 @@
 - SQLAlchemy
 - Jinja2
 - Gunicorn
-- HTML5
-- CSS
-- Javascript
+- HTML5, CSS e Javascript
 
 # Configuração
 
-## Requisitos mínimos
-- Python V3.6 ou superior
+## Requerimentos mínimos
+- Python V3.6 ou >
 - MySQL Database
 
-## Iniciar projeto
-- Clonar e atualizar repositório
+## Inicialização do ambiente
+
+#### Clonar e atualizar repositório
 ```
-git clone https://github.com/JonnReis/Lab-Engenharia-Software-Sistema_Receitas.git
-cd Prototipo_receitas
+git clone https://github.com/fabsvas/recipp-app.git
+cd recipp-app
 git checkout master
 git pull
 ```
-- Intalando o virtualenv
-``` 
-pip install virtualenv
+
+#### Instalando virtualenv
 ```
-- Inicializando ambiente virtual
-```
- python -m venv env
- env\Scripts\activate
+pip/pip3 install virtualenv
 ```
 
-- Instalação das dependências
+#### Inicializando ambiente virtual no Linux
 ```
-pip install -r requirements.txt
+ python/python3 -m venv env
+ source env/bin/activate
 ```
 
-- Configurando ambiente
+#### Inicializando ambiente virtual no Windows
+```
+ python/python3 -m venv env
+ cd env/Scripts
+ activate
+```
 
-Configure a conexão com o MySQL criando o arquivo **.env** na raiz do projeto de acordo com o exemplo a seguir
+#### Instalação das dependências
+```
+pip/pip3 install -r requirements.txt
+```
+
+#### Conexão com o banco de dados
+
+Configure a conexão com o MySQL no arquivo **.env** localizado na raiz do projeto de acordo com o exemplo a seguir
 ```
 MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USERNAME=root
-MYSQL_PASSWORD=12345
+MYSQL_PORT=3306 // porta padrão
+MYSQL_USERNAME=root // usuário administrador com todos previlégios do servidor MySQL
+MYSQL_PASSWORD=1234554321 // senha do usuário administrador do servidor MySQL
 ```
- **Obs: Se necessário, altere a senha do campo "MYSQL_PASSWORD" de acordo com o seu usuário root**
+**Utilize _usuário_ e _senha_ com previlégios de _administrador_**
 
-- Criando Banco de dados (Collection) e iniciando aplicação
-``` 
-python wsgi.py create_db
+- Exemplo:
+  ```bash
+  $ sudo mysql -u root -p
+  mysql> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+  mysql> ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+  mysql> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost';
+  mysql> GRANT SELECT, INSERT, UPDATE, DELETE ON *.* TO 'admin'@'localhost';
+  mysql> exit;
+  $ sudo service mysql restart 
+  ```
+
+
+#### Criando schema e tabelas
 ```
-- Inicializando aplicação com o BD ja criado
-
-Gunicorn (Terminal Unix)
-```
-gunicorn --bind IP:PORTA wsgi:app
-
-gunicorn --bind 0.0.0.0:1234 wsgi:app
-```
-WSGI (Terminal Windows)
-```
-python wsgi.py
+python/python3 wsgi.py create_db
 ```
 
-- Acessando aplicação
+Uma vez iniciado, será criado o schema **receitas** e as respectivas tabelas:
+- [x] ingredient
+- [x] recipe
+- [x] recipe_ingredient  
 
-Acesse http://127.0.0.1:5000/
+Após subir a aplicação com sucesso encerre para inicializar com o **Gunicorn** ou **WSGI**
 
-### Vídeo explicativo [Entrega_1](https://youtu.be/mVbQp_XvaVI)
+## Subindo a aplicação
 
-"# Lab-Engenharia-Software-Sistema_Receitas" 
-"# Lab-Engenharia-Software-Sistema_Receitas" 
-"# Lab-Engenharia-Software-Sistema_Receitas" 
+#### Para rodar a aplicação
+
+> Gunicorn 
+
+**Atente-se, o _Gunicorn_ só funcionará em _sistemas UNIX_**
+```
+gunicorn --bind <host:porta> wsgi:app
+
+Exemplo: gunicorn --bind 0.0.0.0:1234 wsgi:app
+```
+
+> WSGI
+```
+python/python3 wsgi.py
+```
+
+## Entregas parciais
+
+- [Entrega 1 - Protótipo navegável](https://youtu.be/KG1fHToLZtw)
+- [Entrega 2 - Persistência de dados](https://youtu.be/4iKZfBt7s8k)
