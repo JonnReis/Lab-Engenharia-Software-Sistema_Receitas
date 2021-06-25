@@ -32,12 +32,8 @@ git pull
 
 #### Instalando virtualenv
 ```
-<<<<<<< HEAD
 pip/pip3 install virtualenv
-=======
-- Inicializando ambiente virtual Windows
->>>>>>> 31fe94857abec825f0584d6f08638138ec4d5624
-```
+
 
 #### Inicializando ambiente virtual no Linux
 ```
@@ -70,7 +66,7 @@ MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
 MYSQL_PORT=3306 // porta padrão
 MYSQL_USERNAME=root // usuário administrador com todos previlégios do servidor MySQL
-MYSQL_PASSWORD=1234554321 // senha do usuário administrador do servidor MySQL
+MYSQL_PASSWORD=12345 // senha do usuário administrador do servidor MySQL
 ```
 **Utilize _usuário_ e _senha_ com previlégios de _administrador_**
 
