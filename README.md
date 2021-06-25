@@ -16,7 +16,7 @@
 
 # Configuração
 
-## Requerimentos mínimos
+## Requisitos mínimos
 - Python V3.6 ou >
 - MySQL Database
 
@@ -60,7 +60,7 @@ pip/pip3 install -r requirements.txt
 
 #### Conexão com o banco de dados
 
-Configure a conexão com o MySQL no arquivo **.env** localizado na raiz do projeto de acordo com o exemplo a seguir
+Configure a conexão com o MySQL no arquivo **.env** localizado na raiz do projeto de acordo com o exemplo a seguir ou de acordo com as suas configuraçõs locais
 ```
 MYSQL_DATABASE=receitas
 MYSQL_HOST=localhost
@@ -114,5 +114,7 @@ python/python3 wsgi.py
 
 ## Entregas parciais
 
-- [Entrega 1 - Protótipo navegável](https://youtu.be/mVbQp_XvaVI)
-- [Entrega 2 - Persistência de dados](https://youtu.be/VbWMxY7tn2A)
+- [#Entrega 1 - Protótipo navegável](https://youtu.be/mVbQp_XvaVI)
+- [#Entrega 2 - Persistência de dados](https://youtu.be/VbWMxY7tn2A)
+
+## Sinta-se livre para clonar o repositório e testar a aplicação
