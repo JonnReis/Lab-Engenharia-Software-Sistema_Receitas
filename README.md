@@ -1,7 +1,7 @@
 # Recipp 
 
 ## Aluno
-- Fabrício da Cunha Vasconcellos
+- Jonatas dos Reis Ferreira
 
 ## Objetivo
 - Desenvolver um sistema Web para criação de receitas em Python
