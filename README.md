@@ -33,7 +33,7 @@ git pull
 #### Instalando virtualenv
 ```
 pip/pip3 install virtualenv
-
+```
 
 #### Inicializando ambiente virtual no Linux
 ```
